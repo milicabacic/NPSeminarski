@@ -118,7 +118,7 @@ public class RezervacijaSale {
 		if (datumVremeDo == null || datumVremeDo.getTime() < new Date().getTime()) {
 			throw new IllegalArgumentException("Ispit se ne moze zavrsiti u proslosti!");
 		}
-		if(datumVremeDo.after(datumVremeOd)) {
+		if(datumVremeDo.before(datumVremeOd)) {
 			throw new IllegalArgumentException("Ispit se ne moze zavrsiti pre nego sto je poceo");
 		}
 		this.datumVremeDo = datumVremeDo;

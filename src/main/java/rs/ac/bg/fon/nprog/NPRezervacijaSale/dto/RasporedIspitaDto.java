@@ -1,7 +1,9 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.dto;
 
+import java.util.List;
 import java.util.Objects;
 
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.Rok;
 
 public class RasporedIspitaDto {
@@ -57,6 +59,8 @@ public class RasporedIspitaDto {
 	public String toString() {
 		return "RasporedIspitaDto [id=" + id + ", rok=" + rok + "]";
 	}
+	
+
 	
 	
 	

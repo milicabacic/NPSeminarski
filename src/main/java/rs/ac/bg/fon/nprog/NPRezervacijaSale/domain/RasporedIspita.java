@@ -2,9 +2,7 @@ package rs.ac.bg.fon.nprog.NPRezervacijaSale.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +23,7 @@ public class RasporedIspita {
 	
 	private Rok rok;
 	
-	@OneToMany()
+	@OneToMany(mappedBy = "raspored", fetch = FetchType.EAGER)
 	List<RezervacijaSale> ispiti;
 
 	public RasporedIspita() {
