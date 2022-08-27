@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,23 +33,23 @@ public class RezervacijaSale {
 	
 	private TipIspita tipIspita;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, optional =  false)
 	@JoinColumn (name = "salaId")
 	private Sala sala;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn (name = "asistentId")
 	private Asistent asistent;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn (name = "profesorId")
 	private Profesor profesor;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn (name = "predmetId")
 	private Predmet predmet;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn (name = "rasporedId")
 	private RasporedIspita raspored;
 

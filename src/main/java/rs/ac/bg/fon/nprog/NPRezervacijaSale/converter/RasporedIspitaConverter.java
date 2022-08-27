@@ -1,8 +1,11 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
+import org.springframework.stereotype.Component;
+
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RasporedIspita;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 
+@Component
 public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, RasporedIspita>{
 
 	@Override
@@ -16,6 +19,7 @@ public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, Ras
 		RasporedIspita raspored = new RasporedIspita();
 		raspored.setId(d.getId());
 		raspored.setRok(d.getRok());
+		
 		return raspored;
 	}
 

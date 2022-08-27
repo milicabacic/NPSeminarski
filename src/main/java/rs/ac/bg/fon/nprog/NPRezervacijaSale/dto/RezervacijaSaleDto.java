@@ -7,7 +7,8 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.Rok;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.TipIspita;
 
 public class RezervacijaSaleDto {
-private Long id;
+
+	private Long id;
 	
 	private Rok rok;
 	

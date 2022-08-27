@@ -1,8 +1,11 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
+import org.springframework.stereotype.Component;
+
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Predmet;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.PredmetDto;
 
+@Component
 public class PredmetConverter implements Converter<PredmetDto, Predmet>{
 
 	@Override

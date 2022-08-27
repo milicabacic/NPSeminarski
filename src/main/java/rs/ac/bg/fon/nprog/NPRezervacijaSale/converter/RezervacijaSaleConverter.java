@@ -4,6 +4,8 @@ package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Asistent;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Predmet;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Profesor;
@@ -12,8 +14,10 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 
+@Component
 public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, RezervacijaSale>{
-
+	
+	
 	@Override
 	public RezervacijaSaleDto toDto(RezervacijaSale e) {	
 		return new RezervacijaSaleDto(e.getId(), e.getRok(), e.getDatumVremeOd(), e.getDatumVremeDo(), e.getBrojStudenata(), e.getTipIspita(), e.getSala().getId(), e.getAsistent().getId(), e.getProfesor().getId(), e.getPredmet().getId(), e.getRaspored().getId());
