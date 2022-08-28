@@ -100,7 +100,7 @@ public class AsistentDto {
 	 * 
 	 * Asistenti se porede po referenci ukoliko je isti objekat, a ako nije onda po id-u, imenu, prezimenu i sva polja moraju biti ista.
 	 * 
-	 * @return true ako su oba objekta klase Asistent i imaju iste vrednosti za id, ime, prezime.
+	 * @return true ako su oba objekta klase AsistentDto i imaju iste vrednosti za id, ime, prezime.
 	 * @return false u svim ostalim slucajevima.
 	 */
 	@Override
