@@ -24,7 +24,7 @@ public class ProfesorConverter implements Converter<ProfesorDto, Profesor>{
 		return new ProfesorDto(e.getId(), e.getIme(), e.getPrezime());
 	}
 	/**
-	 * Metoda koja objekat dto klase AsistentDto prevodi u domenski objekat klase Asistent.
+	 * Metoda koja objekat dto klase ProfesorDto prevodi u domenski objekat klase Profesor.
 	 * 
 	 * @param d Dto objekat klase ProfesorDto
 	 */
