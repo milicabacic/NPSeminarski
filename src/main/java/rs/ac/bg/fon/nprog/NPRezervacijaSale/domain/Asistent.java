@@ -179,7 +179,7 @@ public class Asistent {
 	/**
 	 * Poredi dva asistenta i vraca true ako su isti, a false ako nisu.
 	 * 
-	 * Autori se porede po referenci ukoliko je isti objekat, a ako nije onda po id-u, imenu, prezimenu i dezurstvima i sva polja moraju biti ista.
+	 * Asistenti se porede po referenci ukoliko je isti objekat, a ako nije onda po id-u, imenu, prezimenu i dezurstvima i sva polja moraju biti ista.
 	 * 
 	 * @return true ako su oba objekta klase Asistent i imaju iste vrednosti za id, ime, prezime i dezurstva.
 	 * @return false u svim ostalim slucajevima.
