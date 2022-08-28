@@ -14,24 +14,44 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Asistent;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.AsistentDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.AsistentRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.AsistentService;
-
+/**
+ * Implementacija interfejsa AsistentService koja sadrzi logiku za rad sa domenskom klasom Asistent (CRUD operacije).
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Service
 public class AsistentServiceImpl implements AsistentService {
 	
+	/**
+	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
+	 */
 	private final AsistentRepository asistentRepository;
 	
-	
+	/**
+	 * Konstruktor koji inicijalizuje objekat klase AsistentServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
+	 * 
+	 * @param asistentRepository Repozitorijum koji se odnosi na domenski objekat Asistent
+	 */
 	@Autowired
 	public AsistentServiceImpl(AsistentRepository asistentRepository) {
 		super();
 		this.asistentRepository = asistentRepository;
 	}
 	
+	/**
+	 * Instanca klase AsistentConverter koja sluzi za konverziju izmedju Asistent i AsistentDto klasa
+	 */
 	@Autowired
 	AsistentConverter asistentConverter;
 	
 	
-
+	/**
+	 * Metoda koja za zadati id vraca objekat klase AsistentDto koji ima dati id.
+	 * 
+	 * @param asistentId Id asistenta koji treba da bude vracen
+	 * @return Vraca objekat klase AsistentDto sa zadatim id-jem.
+	 */
 	@Override
 	public AsistentDto getAsistent(Long asistentId) {
 		try {
@@ -44,7 +64,14 @@ public class AsistentServiceImpl implements AsistentService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja cuva datu instancu klase AsistentDto
+	 * 
+	 * @param asistentDto Asistent koji treba da bude sacuvan
+	 * @return Vraca objekat klase AsistentDto koji predstavlja sacuvanog asistenta
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja asistenta
+	 */
 	@Override
 	public AsistentDto saveAsistent(AsistentDto asistentDto) {
 		try {
@@ -60,6 +87,11 @@ public class AsistentServiceImpl implements AsistentService {
 		}
 	}
 
+	/**
+	 * Metoda koja vraca sve sacuvane asistente
+	 * 
+	 * @return Vraca listu objekata klase AsistentDto koja predstavlja sve sacuvane asistente
+	 */
 	@Override
 	public List<AsistentDto> getAllAsistents() {
 		try {
