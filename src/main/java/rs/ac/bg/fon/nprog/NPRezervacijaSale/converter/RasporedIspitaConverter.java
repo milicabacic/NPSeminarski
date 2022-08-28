@@ -31,6 +31,11 @@ public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, Ras
 		
 		return new RasporedIspitaDto(e.getId(), e.getRok());
 	}
+	/**
+	 * Interfejs za rad sa repozitorijumom vezanim za domensku klasu RezervacijaSale
+	 */
+	@Autowired
+	RezervacijaSaleRepository rezervacijaRepository;
 
 	/**
 	 * Metoda koja objekat dto klase RasporedIspitaDto prevodi u domenski objekat klase RasporedIspita.
@@ -43,7 +48,10 @@ public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, Ras
 		RasporedIspita raspored = new RasporedIspita();
 		raspored.setId(d.getId());
 		raspored.setRok(d.getRok());
-		raspored.setIspiti(null);
+		
+		List<RezervacijaSale> ispiti = rezervacijaRepository.findByRaspored(d.getId());
+		
+		raspored.setIspiti(ispiti);
 		
 		return raspored;
 	}
