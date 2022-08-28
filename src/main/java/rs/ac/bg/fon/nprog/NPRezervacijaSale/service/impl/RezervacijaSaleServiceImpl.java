@@ -24,19 +24,50 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RezervacijaSaleService;
-
+/**
+ * Implementacija interfejsa RezervacijaSaleService koja sadrzi logiku za rad sa domenskom klasom RezervacijaSale (CRUD operacije).
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Service
 public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
-	
+	/**
+	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
+	 */
 	private final RezervacijaSaleRepository rezervacijaSaleRepository;
-	
+	/**
+	 * Instanca klase SalaServiceImpl koja sluzi za rad sa entitetima klase SalaDto
+	 */
 	private final SalaServiceImpl salaService;
+	/**
+	 * Instanca klase ProfesorServiceImpl koja sluzi za rad sa entitetima klase ProfesorDto
+	 */
 	private final ProfesorServiceImpl profesorService;
+	/**
+	 * Instanca klase PredmetServiceImpl koja sluzi za rad sa entitetima klase PredmetDto
+	 */
 	private final PredmetServiceImpl predmetService;
+	/**
+	 * Instanca klase AsistentServiceImpl koja sluzi za rad sa entitetima klase AsistentDto
+	 */
 	private final AsistentServiceImpl asistentService;
+	/**
+	 * Instanca klase RasporedIspitaServiceImpl koja sluzi za rad sa entitetima klase RasporedIspitaDto
+	 */
 	private final RasporedIspitaServiceImpl rasporedService;
 
-	
+	/**
+	 * Konstruktor koji inicijalizuje objekat klase RezervacijaSaleServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
+	 * 
+	 * @param rezervacijaSaleRepository Repozitorijum za rad sa bazom podataka klase RezervacijaSale
+	 * @param salaService Objekat klase SalaServiceImpl
+	 * @param profesorService Objekat klase ProfesorServiceImpl
+	 * @param predmetService Objekat klase PredmetServiceImpl
+	 * @param asistentService Objekat klase AsistentServiceImpl
+	 * @param rasporedService Objekat klase RasporedIspitaServiceImpl
+	 * @param rezervacijaSaleConverter Objekat klase RezervacijaSaleConverter
+	 */
 	@Autowired
 	public RezervacijaSaleServiceImpl(RezervacijaSaleRepository rezervacijaSaleRepository, SalaServiceImpl salaService,
 			ProfesorServiceImpl profesorService, PredmetServiceImpl predmetService, AsistentServiceImpl asistentService,
@@ -51,24 +82,43 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		this.rezervacijaSaleConverter = rezervacijaSaleConverter;
 	}
 
+	/**
+	 * Objekat klase RezervacijaSaleConverter koji sluzi za konverzije izmedju objekata klasa RezervacijaSale i RezervacijaSaleDto
+	 */
 	@Autowired
 	RezervacijaSaleConverter rezervacijaSaleConverter;
-	
+	/**
+	 * Objekat klase SalaConverter koji sluzi za konverzije izmedju objekata klasa Sala i SalaDto
+	 */
 	@Autowired
 	SalaConverter salaConverter;
-	
+	/**
+	 * Objekat klase AsistentConverter koji sluzi za konverzije izmedju objekata klasa Asistent i AsistentDto
+	 */
 	@Autowired
 	AsistentConverter asistentConverter;
-	
+	/**
+	 * Objekat klase PredmetConverter koji sluzi za konverzije izmedju objekata klasa Predmet i PredmetDto
+	 */
 	@Autowired
 	PredmetConverter predmetConverter;
-	
+	/**
+	 * Objekat klase ProfesorConverter koji sluzi za konverzije izmedju objekata klasa Profesor i ProfesorDto
+	 */
 	@Autowired
 	ProfesorConverter profesorConverter;
-	
+	/**
+	 * Objekat klase RasporedIspitaConverter koji sluzi za konverzije izmedju objekata klasa RasporedIspita i RasporedIspitaDto
+	 */
 	@Autowired
 	RasporedIspitaConverter rasporedIspitaConverter;
 
+	/**
+	 * Metoda koja za zadati id vraca objekat klase RezervacijaSaleDto koji ima dati id.
+	 * 
+	 * @param rezervacijaSaleId Id rezervacije sale koja treba da bude vracena
+	 * @return Vraca objekat klase RezervacijaSaleDto sa zadatim id-jem.
+	 */
 	@Override
 	public RezervacijaSaleDto getRezervacijaSale(Long rezervacijaSaleId) {
 		try {
@@ -82,6 +132,14 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		}
 	}
 
+	/**
+	 * Metoda koja cuva datu instancu klase RezervacijaSaleDto
+	 * 
+	 * @param rezervacijaDto Rezervacija sale koja treba da bude sacuvana
+	 * @return Vraca objekat klase RezervacijaSaleDto koji predstavlja sacuvanu rezervaciju sale
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rezervacije sale
+	 */
 	@Override
 	public RezervacijaSaleDto saveRezervacijaSale(RezervacijaSaleDto rezervacijaDto) {
 		try {
@@ -97,6 +155,11 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		}
 	}
 
+	/**
+	 * Metoda koja vraca sve sacuvane rezervacije sala
+	 * 
+	 * @return Vraca listu objekata klase RezervacijaSaleDto koja predstavlja sve sacuvane rezervacije sala
+	 */
 	@Override
 	public List<RezervacijaSaleDto> getAllRezervacijaSales() {
 		try {
@@ -112,6 +175,16 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		}
 	}
 
+	/**
+	 * Metoda koja brise rezervaciju sale sa datim id-jem.
+	 * 
+	 * @param rezervacijaSaleId Id rezervacije sale koja treba da bude obrisana
+	 * 
+	 * @return true ukoliko je brisanje uspesno
+	 * @return false ukoliko je brisanje neuspesno
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom brisanja rezervacije sale
+	 */
 	@Override
 	public boolean deleteRezervacijaSale(Long rezervacijaSaleId) {
 		try {
@@ -126,6 +199,15 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		}
 	}
 
+	/**
+	 * Metoda koja azurira rezervaciju sale zadatom rezervacijom
+	 * 
+	 * @param rezervacijaDto Rezervacij sale kojom stara treba da bude azurirana
+	 * 
+	 * @return Vraca objekat klase RezervacijaSaleDto koji predstavlja novu rezervaciju sale nakon azuriranja
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom azuriranja rezervacije sale
+	 */
 	@Override
 	public RezervacijaSaleDto updateRezervacijaSale(RezervacijaSaleDto rezervacijaDto) {
 		try {
