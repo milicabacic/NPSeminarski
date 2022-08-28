@@ -25,11 +25,22 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.ProfesorService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RasporedIspitaService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.SalaService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.SalaServiceImpl;
-
+/**
+ * Klasa koja sluzi da omoguci konverzije izmedju objekata klasa RezervacijaSale i RezervacijaSaleDto
+ * 
+ * Klasa sadrzi metodu koja dto objekat prevodi u domenski objekat, kao i metodu za prevodjenje domenskog objekta u dto objekat.
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Component
 public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, RezervacijaSale>{
 	
-	
+	/**
+	 * Metoda koja objekat domenske klase RezervacijaSale prevodi u dto objekat klase RezervacijaSaleDto.
+	 * 
+	 * @param e Domenski objekat klase RezervacijaSale
+	 */
 	@Override
 	public RezervacijaSaleDto toDto(RezervacijaSale e) {	
 		return new RezervacijaSaleDto(e.getId(), e.getRok(), e.getDatumVremeOd(), e.getDatumVremeDo(), e.getBrojStudenata(), e.getTipIspita(), e.getSala().getId(), e.getAsistent().getId(), e.getProfesor().getId(), e.getPredmet().getId(), e.getRaspored().getId());
@@ -64,7 +75,11 @@ public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, R
 	
 	@Autowired
 	RasporedIspitaConverter rasporedIspitaConverter;
-	
+	/**
+	 * Metoda koja objekat dto klase RezervacijaSaleDto prevodi u domenski objekat klase RezervacijaSale.
+	 * 
+	 * @param d Dto objekat klase RezervacijaSaleDto
+	 */
 	@Override
 	public RezervacijaSale toEntity(RezervacijaSaleDto d) {
 		RezervacijaSale rezervacijaSale = new RezervacijaSale();
