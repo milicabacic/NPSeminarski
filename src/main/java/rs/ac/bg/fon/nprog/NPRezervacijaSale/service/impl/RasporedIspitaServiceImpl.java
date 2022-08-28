@@ -14,21 +14,39 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RasporedIspita;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RasporedIspitaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RasporedIspitaService;
-
+/**
+ * Implementacija interfejsa RasporedIspitaService koja sadrzi logiku za rad sa domenskom klasom Sala (CRUD operacije).
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Service
 public class RasporedIspitaServiceImpl implements RasporedIspitaService {
-
+	/**
+	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
+	 */
 	private final RasporedIspitaRepository rasporedRepository;
-	
+	/**
+	 * Konstruktor koji inicijalizuje objekat klase RasporedIspitaServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
+	 * 
+	 * @param rasporedRepository Repozitorijum koji se odnosi na domenski objekat RasporedIspita
+	 */
 	@Autowired
 	public RasporedIspitaServiceImpl(RasporedIspitaRepository rasporedRepository) {
 		super();
 		this.rasporedRepository = rasporedRepository;
 	}
-
+	/**
+	 * Instanca klase RasporedIspitaConverter koja sluzi za konverziju izmedju RasporedIspita i RasporedIspitaDto klasa
+	 */
 	@Autowired
 	RasporedIspitaConverter rasporedConverter;
-	
+	/**
+	 * Metoda koja za zadati id vraca objekat klase RasporedIspitaDto koji ima dati id.
+	 * 
+	 * @param rasporedId Id rasporeda koji treba da bude vracen
+	 * @return Vraca objekat klase RasporedIspitaDto sa zadatim id-jem.
+	 */
 	@Override
 	public RasporedIspitaDto getRaspored(Long rasporedId) {
 		try {
@@ -41,7 +59,14 @@ public class RasporedIspitaServiceImpl implements RasporedIspitaService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja cuva datu instancu klase RasporedIspitaDto
+	 * 
+	 * @param rasporedDto Raspored koji treba da bude sacuvan
+	 * @return Vraca objekat klase RasporedIspitaDto koji predstavlja sacuvan raspored
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rasporeda
+	 */
 	@Override
 	public RasporedIspitaDto saveRaspored(RasporedIspitaDto rasporedDto) {
 		try {
@@ -56,7 +81,11 @@ public class RasporedIspitaServiceImpl implements RasporedIspitaService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja vraca sve sacuvane rasporede ispita
+	 * 
+	 * @return Vraca listu objekata klase RasporedIspitaDto koja predstavlja sve sacuvane rasporede ispita
+	 */
 	@Override
 	public List<RasporedIspitaDto> getAllRasporeds() {
 		try {
