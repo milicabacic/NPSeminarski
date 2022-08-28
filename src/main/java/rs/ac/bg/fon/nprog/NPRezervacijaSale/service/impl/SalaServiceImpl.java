@@ -14,22 +14,40 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.SalaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.SalaService;
-
+/**
+ * Implementacija interfejsa SalaService koja sadrzi logiku za rad sa domenskom klasom Sala (CRUD operacije).
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Service
 public class SalaServiceImpl implements SalaService {
-	
+	/**
+	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
+	 */
 	private final SalaRepository salaRepository;
 	
-	
+	/**
+	 * Konstruktor koji inicijalizuje objekat klase SalaServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
+	 * 
+	 * @param salaRepository Repozitorijum koji se odnosi na domenski objekat Sala
+	 */
 	@Autowired
 	public SalaServiceImpl(SalaRepository salaRepository) {
 		super();
 		this.salaRepository = salaRepository;
 	}
-
+	/**
+	 * Instanca klase SalaConverter koja sluzi za konverziju izmedju Sala i SalaDto klasa
+	 */
 	@Autowired
 	private SalaConverter salaConverter;
-	
+	/**
+	 * Metoda koja za zadati id vraca objekat klase SalaDto koji ima dati id.
+	 * 
+	 * @param salaId Id sale koja treba da bude vracena
+	 * @return Vraca objekat klase SalaDto sa zadatim id-jem.
+	 */
 	@Override
 	public SalaDto getSala(Long salaId) {
 		try {
@@ -43,7 +61,14 @@ public class SalaServiceImpl implements SalaService {
 		}
 	}
 	
-
+	/**
+	 * Metoda koja cuva datu instancu klase SalaDto
+	 * 
+	 * @param salaDto Sala koja treba da bude sacuvana
+	 * @return Vraca objekat klase SalaDto koji predstavlja sacuvanu salu
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja sale
+	 */
 	@Override
 	public SalaDto saveSala(SalaDto salaDto) {
 		try {
@@ -58,7 +83,11 @@ public class SalaServiceImpl implements SalaService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja vraca sve sacuvane sale
+	 * 
+	 * @return Vraca listu objekata klase SalaDto koja predstavlja sve sacuvane sale
+	 */
 	@Override
 	public List<SalaDto> getAllSalas() {
 		try {
