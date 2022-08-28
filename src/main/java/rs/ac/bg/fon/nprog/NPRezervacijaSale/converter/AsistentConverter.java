@@ -16,6 +16,8 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.AsistentDto;
 public class AsistentConverter implements Converter<AsistentDto, Asistent>{
 	/**
 	 * Metoda koja objekat domenske klase Asistent prevodi u dto objekat klase AsistentDto.
+	 * 
+	 * @param e Domenski objekat klase Asistent
 	 */
 	@Override
 	public AsistentDto toDto(Asistent e) {
@@ -23,6 +25,8 @@ public class AsistentConverter implements Converter<AsistentDto, Asistent>{
 	}
 	/**
 	 * Metoda koja objekat dto klase AsistentDto prevodi u domenski objekat klase Asistent.
+	 * 
+	 * @param d Dto objekat klase AsistentDto
 	 */
 	@Override
 	public Asistent toEntity(AsistentDto d) {

@@ -16,6 +16,8 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
 public class SalaConverter implements Converter<SalaDto, Sala>{
 	/**
 	 * Metoda koja objekat domenske klase Sala prevodi u dto objekat klase SalaDto.
+	 * 
+	 * @param e Domenski objekat klase Sala 
 	 */
 	@Override
 	public SalaDto toDto(Sala e) {
@@ -23,6 +25,8 @@ public class SalaConverter implements Converter<SalaDto, Sala>{
 	}
 	/**
 	 * Metoda koja objekat dto klase SalaDto prevodi u domenski objekat klase Sala.
+	 * 
+	 * @param d Dto objekat klase SalaDto
 	 */
 	@Override
 	public Sala toEntity(SalaDto d) {
