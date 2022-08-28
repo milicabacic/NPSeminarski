@@ -14,21 +14,39 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Profesor;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.ProfesorDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.ProfesorRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.ProfesorService;
-
+/**
+ * Implementacija interfejsa ProfesorService koja sadrzi logiku za rad sa domenskom klasom Profesor (CRUD operacije).
+ * 
+ * @author Milica Bacic
+ *
+ */
 @Service
 public class ProfesorServiceImpl implements ProfesorService {
-	
+	/**
+	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
+	 */
 	private final ProfesorRepository profesorRepository;
-	
+	/**
+	 * Konstruktor koji inicijalizuje objekat klase ProfesorServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
+	 * 
+	 * @param profesorRepository Repozitorijum koji se odnosi na domenski objekat Profesor
+	 */
 	@Autowired
 	public ProfesorServiceImpl(ProfesorRepository profesorRepository) {
 		super();
 		this.profesorRepository = profesorRepository;
 	}
-	
+	/**
+	 * Instanca klase ProfesorConverter koja sluzi za konverziju izmedju Profesor i ProfesorDto klasa
+	 */
 	@Autowired
 	ProfesorConverter profesorConverter;
-
+	/**
+	 * Metoda koja za zadati id vraca objekat klase ProfesorDto koji ima dati id.
+	 * 
+	 * @param profesorId Id profesora koji treba da bude vracen
+	 * @return Vraca objekat klase ProfesorDto sa zadatim id-jem.
+	 */
 	@Override
 	public ProfesorDto getProfesor(Long profesorId) {
 		try {
@@ -41,7 +59,14 @@ public class ProfesorServiceImpl implements ProfesorService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja cuva datu instancu klase ProfesorDto
+	 * 
+	 * @param profesorDto Profesor koji treba da bude sacuvan
+	 * @return Vraca objekat klase ProfesorDto koji predstavlja sacuvanog profesora
+	 * 
+	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja profesora
+	 */
 	@Override
 	public ProfesorDto saveProfesor(ProfesorDto profesorDto) {
 		try {
@@ -56,7 +81,11 @@ public class ProfesorServiceImpl implements ProfesorService {
 			throw e;
 		}
 	}
-
+	/**
+	 * Metoda koja vraca sve sacuvane profesore
+	 * 
+	 * @return Vraca listu objekata klase ProfesorDto koja predstavlja sve sacuvane profesore
+	 */
 	@Override
 	public List<ProfesorDto> getAllProfesors() {
 		try {
