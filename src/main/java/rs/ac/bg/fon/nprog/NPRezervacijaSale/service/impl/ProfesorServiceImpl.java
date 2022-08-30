@@ -35,6 +35,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 	public ProfesorServiceImpl(ProfesorRepository profesorRepository) {
 		super();
 		this.profesorRepository = profesorRepository;
+		profesorConverter = new ProfesorConverter();
 	}
 	/**
 	 * Instanca klase ProfesorConverter koja sluzi za konverziju izmedju Profesor i ProfesorDto klasa

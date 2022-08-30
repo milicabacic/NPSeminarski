@@ -37,6 +37,7 @@ public class AsistentServiceImpl implements AsistentService {
 	public AsistentServiceImpl(AsistentRepository asistentRepository) {
 		super();
 		this.asistentRepository = asistentRepository;
+		asistentConverter = new AsistentConverter();
 	}
 	
 	/**
