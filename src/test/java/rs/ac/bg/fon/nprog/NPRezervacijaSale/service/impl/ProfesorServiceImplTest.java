@@ -16,9 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.ProfesorConverter;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Asistent;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Profesor;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.AsistentDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.ProfesorDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.ProfesorRepository;
 

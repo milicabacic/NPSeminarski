@@ -36,6 +36,7 @@ public class SalaServiceImpl implements SalaService {
 	public SalaServiceImpl(SalaRepository salaRepository) {
 		super();
 		this.salaRepository = salaRepository;
+		salaConverter = new SalaConverter();
 	}
 	/**
 	 * Instanca klase SalaConverter koja sluzi za konverziju izmedju Sala i SalaDto klasa
