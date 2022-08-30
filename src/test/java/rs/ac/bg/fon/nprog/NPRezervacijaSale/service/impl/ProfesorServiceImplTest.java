@@ -76,7 +76,7 @@ class ProfesorServiceImplTest {
 	}
 	
 	@Test
-	void testSaveAsistentNull() {
+	void testSaveProfesorNull() {
 		Profesor p = new Profesor(Long.valueOf(1), "Pera", "Peric", null);
 		
 		ProfesorDto pd = converter.toDto(p);

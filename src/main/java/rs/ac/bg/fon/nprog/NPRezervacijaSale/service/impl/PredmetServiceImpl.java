@@ -36,6 +36,7 @@ public class PredmetServiceImpl implements PredmetService {
 	public PredmetServiceImpl(PredmetRepository predmetRepository) {
 		super();
 		this.predmetRepository = predmetRepository;
+		predmetConverter = new PredmetConverter();
 	}
 	/**
 	 * Instanca klase PredmetConverter koja sluzi za konverziju izmedju Predmet i PredmetDto klasa
