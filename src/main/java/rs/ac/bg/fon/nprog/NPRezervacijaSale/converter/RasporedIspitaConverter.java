@@ -37,23 +37,33 @@ public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, Ras
 	@Autowired
 	RezervacijaSaleRepository rezervacijaRepository;
 
+	
+	/**
+	 * Konstruktor koji inicijalizuje instancu klase RasporedIspitaConverter.
+	 * 
+	 */
+	@Autowired
+	public RasporedIspitaConverter() {
+		super();
+	}
+	
+
 	/**
 	 * Metoda koja objekat dto klase RasporedIspitaDto prevodi u domenski objekat klase RasporedIspita.
 	 * 
 	 * @param d Dto objekat klase RasporedIspitaDto
 	 */
+
 	@Override
 	public RasporedIspita toEntity(RasporedIspitaDto d) {
 		
 		RasporedIspita raspored = new RasporedIspita();
 		raspored.setId(d.getId());
 		raspored.setRok(d.getRok());
-		
-		List<RezervacijaSale> ispiti = rezervacijaRepository.findByRaspored(d.getId());
-		
-		raspored.setIspiti(ispiti);
+
 		
 		return raspored;
 	}
+
 
 }

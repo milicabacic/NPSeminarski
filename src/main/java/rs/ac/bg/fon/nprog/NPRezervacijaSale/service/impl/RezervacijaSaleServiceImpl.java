@@ -2,9 +2,16 @@ package rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;import java.util.function.Function;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +23,7 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.RasporedIspitaConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.RezervacijaSaleConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.SalaConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.AsistentDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.PredmetDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.ProfesorDto;
@@ -23,6 +31,7 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.SalaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RezervacijaSaleService;
 /**
  * Implementacija interfejsa RezervacijaSaleService koja sadrzi logiku za rad sa domenskom klasom RezervacijaSale (CRUD operacije).
@@ -35,27 +44,33 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	/**
 	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
 	 */
-	private final RezervacijaSaleRepository rezervacijaSaleRepository;
+	@Autowired
+	private  RezervacijaSaleRepository rezervacijaSaleRepository;
 	/**
 	 * Instanca klase SalaServiceImpl koja sluzi za rad sa entitetima klase SalaDto
 	 */
-	private final SalaServiceImpl salaService;
+	@Autowired
+	private  SalaServiceImpl salaService;
 	/**
 	 * Instanca klase ProfesorServiceImpl koja sluzi za rad sa entitetima klase ProfesorDto
 	 */
-	private final ProfesorServiceImpl profesorService;
+	@Autowired
+	private  ProfesorServiceImpl profesorService;
 	/**
 	 * Instanca klase PredmetServiceImpl koja sluzi za rad sa entitetima klase PredmetDto
 	 */
-	private final PredmetServiceImpl predmetService;
+	@Autowired
+	private  PredmetServiceImpl predmetService;
 	/**
 	 * Instanca klase AsistentServiceImpl koja sluzi za rad sa entitetima klase AsistentDto
 	 */
-	private final AsistentServiceImpl asistentService;
+	@Autowired
+	private  AsistentServiceImpl asistentService;
 	/**
 	 * Instanca klase RasporedIspitaServiceImpl koja sluzi za rad sa entitetima klase RasporedIspitaDto
 	 */
-	private final RasporedIspitaServiceImpl rasporedService;
+	@Autowired
+	private  RasporedIspitaServiceImpl rasporedService;
 
 	/**
 	 * Konstruktor koji inicijalizuje objekat klase RezervacijaSaleServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
@@ -71,7 +86,9 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	@Autowired
 	public RezervacijaSaleServiceImpl(RezervacijaSaleRepository rezervacijaSaleRepository, SalaServiceImpl salaService,
 			ProfesorServiceImpl profesorService, PredmetServiceImpl predmetService, AsistentServiceImpl asistentService,
-			RasporedIspitaServiceImpl rasporedService, RezervacijaSaleConverter rezervacijaSaleConverter) {
+			RasporedIspitaServiceImpl rasporedService, RezervacijaSaleConverter rezervacijaSaleConverter,
+			SalaConverter salaConverter, AsistentConverter asistentConverter, PredmetConverter predmetConverter,
+			ProfesorConverter profesorConverter, RasporedIspitaConverter rasporedIspitaConverter) {
 		super();
 		this.rezervacijaSaleRepository = rezervacijaSaleRepository;
 		this.salaService = salaService;
@@ -80,6 +97,11 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		this.asistentService = asistentService;
 		this.rasporedService = rasporedService;
 		this.rezervacijaSaleConverter = rezervacijaSaleConverter;
+		this.salaConverter = salaConverter;
+		this.asistentConverter = asistentConverter;
+		this.predmetConverter = predmetConverter;
+		this.profesorConverter = profesorConverter;
+		this.rasporedIspitaConverter = rasporedIspitaConverter;
 	}
 
 	/**
@@ -87,6 +109,8 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	 */
 	@Autowired
 	RezervacijaSaleConverter rezervacijaSaleConverter;
+	
+
 	/**
 	 * Objekat klase SalaConverter koji sluzi za konverzije izmedju objekata klasa Sala i SalaDto
 	 */
@@ -138,7 +162,7 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	 * @param rezervacijaDto Rezervacija sale koja treba da bude sacuvana
 	 * @return Vraca objekat klase RezervacijaSaleDto koji predstavlja sacuvanu rezervaciju sale
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rezervacije sale
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rezervacije sale
 	 */
 	@Override
 	public RezervacijaSaleDto saveRezervacijaSale(RezervacijaSaleDto rezervacijaDto) {
@@ -169,6 +193,7 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 				RezervacijaSaleDto convertedRezervacija = this.rezervacijaSaleConverter.toDto(rezervacija);
 				rezervacijeDtos.add(convertedRezervacija);
 			});
+
 			return rezervacijeDtos;
 		} catch (Exception e) {
 			throw e;
@@ -183,7 +208,7 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	 * @return true ukoliko je brisanje uspesno
 	 * @return false ukoliko je brisanje neuspesno
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom brisanja rezervacije sale
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom brisanja rezervacije sale
 	 */
 	@Override
 	public boolean deleteRezervacijaSale(Long rezervacijaSaleId) {
@@ -206,7 +231,7 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	 * 
 	 * @return Vraca objekat klase RezervacijaSaleDto koji predstavlja novu rezervaciju sale nakon azuriranja
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom azuriranja rezervacije sale
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom azuriranja rezervacije sale
 	 */
 	@Override
 	public RezervacijaSaleDto updateRezervacijaSale(RezervacijaSaleDto rezervacijaDto) {

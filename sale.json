@@ -1,0 +1,7 @@
+[
+  "{\n  \"id\": 1,\n  \"naziv\": \"B103\",\n  \"kapacitet\": 100,\n  \"tipSale\": \"Amfiteatar\"\n}",
+  "{\n  \"id\": 2,\n  \"naziv\": \"101\",\n  \"kapacitet\": 60,\n  \"tipSale\": \"Ucionica\"\n}",
+  "{\n  \"id\": 3,\n  \"naziv\": \"111\",\n  \"kapacitet\": 60,\n  \"tipSale\": \"RacunskaSala\"\n}",
+  "{\n  \"id\": 4,\n  \"naziv\": \"C001\",\n  \"kapacitet\": 60,\n  \"tipSale\": \"RacunskaSala\"\n}",
+  "{\n  \"id\": 5,\n  \"naziv\": \"C002\",\n  \"kapacitet\": 60,\n  \"tipSale\": \"RacunskaSala\"\n}"
+]

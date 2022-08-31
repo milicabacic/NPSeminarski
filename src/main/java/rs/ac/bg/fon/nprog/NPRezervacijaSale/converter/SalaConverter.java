@@ -1,5 +1,8 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;
@@ -14,6 +17,7 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
  */
 @Component
 public class SalaConverter implements Converter<SalaDto, Sala>{
+	
 	/**
 	 * Metoda koja objekat domenske klase Sala prevodi u dto objekat klase SalaDto.
 	 * 

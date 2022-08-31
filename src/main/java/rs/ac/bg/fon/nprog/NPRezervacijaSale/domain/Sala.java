@@ -45,7 +45,7 @@ public class Sala {
 	private TipSale tipSale;
 	
 	/**
-	 * Lista rezervacija sale za ispite kao List<RezervacijaSale>.
+	 * Lista rezervacija sale za ispite.
 	 */
 	@OneToMany(mappedBy = "sala", fetch = FetchType.LAZY)
 	private List<RezervacijaSale> rezervacije;
