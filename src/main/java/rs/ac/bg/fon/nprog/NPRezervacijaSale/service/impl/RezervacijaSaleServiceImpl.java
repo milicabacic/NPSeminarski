@@ -2,9 +2,16 @@ package rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;import java.util.function.Function;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +23,7 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.RasporedIspitaConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.RezervacijaSaleConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.SalaConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.AsistentDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.PredmetDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.ProfesorDto;
@@ -23,6 +31,7 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.SalaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RezervacijaSaleService;
 /**
  * Implementacija interfejsa RezervacijaSaleService koja sadrzi logiku za rad sa domenskom klasom RezervacijaSale (CRUD operacije).
@@ -35,26 +44,32 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 	/**
 	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
 	 */
+	
 	private final RezervacijaSaleRepository rezervacijaSaleRepository;
 	/**
 	 * Instanca klase SalaServiceImpl koja sluzi za rad sa entitetima klase SalaDto
 	 */
+	
 	private final SalaServiceImpl salaService;
 	/**
 	 * Instanca klase ProfesorServiceImpl koja sluzi za rad sa entitetima klase ProfesorDto
 	 */
+	
 	private final ProfesorServiceImpl profesorService;
 	/**
 	 * Instanca klase PredmetServiceImpl koja sluzi za rad sa entitetima klase PredmetDto
 	 */
+	
 	private final PredmetServiceImpl predmetService;
 	/**
 	 * Instanca klase AsistentServiceImpl koja sluzi za rad sa entitetima klase AsistentDto
 	 */
+	
 	private final AsistentServiceImpl asistentService;
 	/**
 	 * Instanca klase RasporedIspitaServiceImpl koja sluzi za rad sa entitetima klase RasporedIspitaDto
 	 */
+	
 	private final RasporedIspitaServiceImpl rasporedService;
 
 	/**
@@ -80,6 +95,7 @@ public class RezervacijaSaleServiceImpl implements RezervacijaSaleService {
 		this.asistentService = asistentService;
 		this.rasporedService = rasporedService;
 		this.rezervacijaSaleConverter = rezervacijaSaleConverter;
+		this.rezervacijaSaleConverter = new RezervacijaSaleConverter();
 	}
 
 	/**

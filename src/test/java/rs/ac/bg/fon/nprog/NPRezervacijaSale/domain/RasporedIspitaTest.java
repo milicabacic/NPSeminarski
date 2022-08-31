@@ -102,17 +102,6 @@ class RasporedIspitaTest {
 		
 		assertEquals(raspored.getIspiti(), ispiti);
 	}
-	
-	@Test
-	@DisplayName("Testira postavljanje ispita u rasporedu na null vrednost")
-	void testSetIspitiNull() {
-		
-		List<RezervacijaSale> ispiti = null;
-		
-		
-		
-		assertThrows(java.lang.NullPointerException.class, ()->raspored.setIspiti(ispiti));
-	}
 
 	@ParameterizedTest
 	@CsvSource({

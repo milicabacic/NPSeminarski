@@ -32,7 +32,7 @@ public class SalaServiceImpl implements SalaService {
 	 * 
 	 * @param salaRepository Repozitorijum koji se odnosi na domenski objekat Sala
 	 */
-	@Autowired
+	
 	public SalaServiceImpl(SalaRepository salaRepository) {
 		super();
 		this.salaRepository = salaRepository;

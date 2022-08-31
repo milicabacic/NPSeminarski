@@ -124,9 +124,6 @@ public class RasporedIspita {
 	 * @throws java.lang.NullPointerException ako su ispiti null
 	 */
 	public void setIspiti(List<RezervacijaSale> ispiti) {
-		if(ispiti == null) {
-			throw new NullPointerException("Ispiti ne smeju biti null");
-		}
 		this.ispiti = ispiti;
 	}
 

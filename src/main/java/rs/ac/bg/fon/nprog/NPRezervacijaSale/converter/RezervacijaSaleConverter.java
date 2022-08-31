@@ -4,8 +4,13 @@ package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+
+import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JacksonInject;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Asistent;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Predmet;
@@ -19,11 +24,21 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.ProfesorDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.SalaDto;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.AsistentRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.PredmetRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.ProfesorRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RasporedIspitaRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.SalaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.AsistentService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.PredmetService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.ProfesorService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RasporedIspitaService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.SalaService;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.AsistentServiceImpl;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.PredmetServiceImpl;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.ProfesorServiceImpl;
+import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.RasporedIspitaServiceImpl;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl.SalaServiceImpl;
 /**
  * Klasa koja sluzi da omoguci konverzije izmedju objekata klasa RezervacijaSale i RezervacijaSaleDto
@@ -45,16 +60,16 @@ public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, R
 	public RezervacijaSaleDto toDto(RezervacijaSale e) {	
 		return new RezervacijaSaleDto(e.getId(), e.getRok(), e.getDatumVremeOd(), e.getDatumVremeDo(), e.getBrojStudenata(), e.getTipIspita(), e.getSala().getId(), e.getAsistent().getId(), e.getProfesor().getId(), e.getPredmet().getId(), e.getRaspored().getId());
 	}
-	
+
 	@Autowired
-	SalaService salaService;
+	SalaRepository salaRepo;
 	
+	private final SalaServiceImpl salaService = new SalaServiceImpl(salaRepo);
 	@Autowired
 	SalaConverter salaConverter;
 	
 	@Autowired
 	AsistentService asistentService;
-	
 	@Autowired
 	AsistentConverter asistentConverter;
 	
@@ -66,9 +81,9 @@ public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, R
 	
 	@Autowired
 	PredmetService predmetService;
-	
 	@Autowired
 	PredmetConverter predmetConverter;
+	
 	
 	@Autowired
 	RasporedIspitaService rasporedIspitaService;
