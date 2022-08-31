@@ -1,7 +1,6 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.lenient;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.RasporedIspitaConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RasporedIspita;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RasporedIspitaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;

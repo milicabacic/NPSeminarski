@@ -1,16 +1,12 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RasporedIspita;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.RezervacijaSale;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RasporedIspitaDto;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.dto.RezervacijaSaleDto;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RezervacijaSaleService;
 /**
  * Klasa koja sluzi da omoguci konverzije izmedju objekata klasa RasporedIspita i RasporedIspitaDto
  * 

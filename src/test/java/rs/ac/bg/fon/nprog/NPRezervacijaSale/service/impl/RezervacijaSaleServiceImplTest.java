@@ -1,14 +1,11 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockitoSession;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.security.RunAs;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,16 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import antlr.Parser;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.NpRezervacijaSaleApplication;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.AsistentConverter;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.converter.PredmetConverter;
@@ -56,11 +45,6 @@ import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.ProfesorRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RasporedIspitaRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.RezervacijaSaleRepository;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.repository.SalaRepository;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.AsistentService;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.PredmetService;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.ProfesorService;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.RasporedIspitaService;
-import rs.ac.bg.fon.nprog.NPRezervacijaSale.service.SalaService;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.Rok;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.TipIspita;
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.util.TipSale;

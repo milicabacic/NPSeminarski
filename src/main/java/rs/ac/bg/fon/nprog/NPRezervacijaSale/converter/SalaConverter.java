@@ -1,8 +1,6 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.converter;
 
-import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rs.ac.bg.fon.nprog.NPRezervacijaSale.domain.Sala;

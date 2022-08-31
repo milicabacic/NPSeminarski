@@ -1,12 +1,10 @@
 package rs.ac.bg.fon.nprog.NPRezervacijaSale.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
