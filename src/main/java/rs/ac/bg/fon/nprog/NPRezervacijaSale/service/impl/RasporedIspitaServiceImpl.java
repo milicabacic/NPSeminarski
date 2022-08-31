@@ -70,7 +70,7 @@ public class RasporedIspitaServiceImpl implements RasporedIspitaService {
 	 * @param rasporedDto Raspored koji treba da bude sacuvan
 	 * @return Vraca objekat klase RasporedIspitaDto koji predstavlja sacuvan raspored
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rasporeda
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja rasporeda
 	 */
 	@Override
 	public RasporedIspitaDto saveRaspored(RasporedIspitaDto rasporedDto) {

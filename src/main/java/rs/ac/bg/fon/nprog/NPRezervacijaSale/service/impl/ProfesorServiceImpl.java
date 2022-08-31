@@ -66,7 +66,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 	 * @param profesorDto Profesor koji treba da bude sacuvan
 	 * @return Vraca objekat klase ProfesorDto koji predstavlja sacuvanog profesora
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja profesora
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja profesora
 	 */
 	@Override
 	public ProfesorDto saveProfesor(ProfesorDto profesorDto) {

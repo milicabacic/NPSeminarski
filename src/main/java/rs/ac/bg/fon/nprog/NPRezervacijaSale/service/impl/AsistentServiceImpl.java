@@ -52,6 +52,8 @@ public class AsistentServiceImpl implements AsistentService {
 	 * 
 	 * @param asistentId Id asistenta koji treba da bude vracen
 	 * @return Vraca objekat klase AsistentDto sa zadatim id-jem.
+	 * 
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko se ne vrati asistent sa datim id-jem
 	 */
 	@Override
 	public AsistentDto getAsistent(Long asistentId) {
@@ -71,7 +73,7 @@ public class AsistentServiceImpl implements AsistentService {
 	 * @param asistentDto Asistent koji treba da bude sacuvan
 	 * @return Vraca objekat klase AsistentDto koji predstavlja sacuvanog asistenta
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja asistenta
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja asistenta
 	 */
 	@Override
 	public AsistentDto saveAsistent(AsistentDto asistentDto) {

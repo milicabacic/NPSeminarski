@@ -62,9 +62,7 @@ public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, R
 	}
 
 	@Autowired
-	SalaRepository salaRepo;
-	
-	private final SalaServiceImpl salaService = new SalaServiceImpl(salaRepo);
+	SalaServiceImpl salaService;
 	@Autowired
 	SalaConverter salaConverter;
 	
@@ -90,6 +88,30 @@ public class RezervacijaSaleConverter implements Converter<RezervacijaSaleDto, R
 	
 	@Autowired
 	RasporedIspitaConverter rasporedIspitaConverter;
+	
+	
+	
+	@Autowired
+	public RezervacijaSaleConverter(SalaServiceImpl salaService, SalaConverter salaConverter,
+			AsistentService asistentService, AsistentConverter asistentConverter, ProfesorService profesorService,
+			ProfesorConverter profesorConverter, PredmetService predmetService, PredmetConverter predmetConverter,
+			RasporedIspitaService rasporedIspitaService, RasporedIspitaConverter rasporedIspitaConverter) {
+		super();
+		this.salaService = salaService;
+		this.salaConverter = salaConverter;
+		this.asistentService = asistentService;
+		this.asistentConverter = asistentConverter;
+		this.profesorService = profesorService;
+		this.profesorConverter = profesorConverter;
+		this.predmetService = predmetService;
+		this.predmetConverter = predmetConverter;
+		this.rasporedIspitaService = rasporedIspitaService;
+		this.rasporedIspitaConverter = rasporedIspitaConverter;
+	}
+
+
+
+
 	/**
 	 * Metoda koja objekat dto klase RezervacijaSaleDto prevodi u domenski objekat klase RezervacijaSale.
 	 * 

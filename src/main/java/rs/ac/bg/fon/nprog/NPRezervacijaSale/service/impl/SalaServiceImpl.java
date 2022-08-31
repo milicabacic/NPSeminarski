@@ -25,17 +25,15 @@ public class SalaServiceImpl implements SalaService {
 	/**
 	 * Interfejs koji se odnosi na repozitorijum i sluzi za rad sa bazom podataka.
 	 */
-	private final SalaRepository salaRepository;
+	@Autowired
+	SalaRepository salaRepository;
 	
 	/**
 	 * Konstruktor koji inicijalizuje objekat klase SalaServiceImpl i postavlja vrednosti atributa na zadate vrednosti.
 	 * 
-	 * @param salaRepository Repozitorijum koji se odnosi na domenski objekat Sala
 	 */
-	
-	public SalaServiceImpl(SalaRepository salaRepository) {
+	public SalaServiceImpl() {
 		super();
-		this.salaRepository = salaRepository;
 		salaConverter = new SalaConverter();
 	}
 	/**
@@ -68,7 +66,7 @@ public class SalaServiceImpl implements SalaService {
 	 * @param salaDto Sala koja treba da bude sacuvana
 	 * @return Vraca objekat klase SalaDto koji predstavlja sacuvanu salu
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja sale
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja sale
 	 */
 	@Override
 	public SalaDto saveSala(SalaDto salaDto) {
@@ -84,6 +82,10 @@ public class SalaServiceImpl implements SalaService {
 			throw e;
 		}
 	}
+	
+	@Autowired
+	SaveSaleToFile salaSave;
+
 	/**
 	 * Metoda koja vraca sve sacuvane sale
 	 * 
@@ -98,6 +100,7 @@ public class SalaServiceImpl implements SalaService {
 				SalaDto convertedSala = this.salaConverter.toDto(sala);
 				salaDtos.add(convertedSala);
 			});
+			this.salaSave.saveSaleToFile(salaDtos);
 			return salaDtos;
 		} catch (Exception e) {
 			throw e;

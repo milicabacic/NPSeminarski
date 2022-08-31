@@ -68,7 +68,7 @@ public class PredmetServiceImpl implements PredmetService {
 	 * @param predmetDto Predmet koji treba da bude sacuvan
 	 * @return Vraca objekat klase PredmetDto koji predstavlja sacuvani predmet
 	 * 
-	 * @throws java.lang.ResponseStatusException ukoliko dodje do greske prilikom cuvanja predmeta
+	 * @throws org.springframework.web.server.ResponseStatusException ukoliko dodje do greske prilikom cuvanja predmeta
 	 */
 	@Override
 	public PredmetDto savePredmet(PredmetDto predmetDto) {

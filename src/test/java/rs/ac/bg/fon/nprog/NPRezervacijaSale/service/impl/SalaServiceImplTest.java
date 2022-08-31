@@ -32,6 +32,10 @@ class SalaServiceImplTest {
 	@Mock
 	SalaRepository repository;
 	
+	@Autowired
+	@Mock
+	SaveSaleToFile salaSave;
+	
 	SalaConverter converter;
 	
 	@BeforeEach
@@ -92,6 +96,8 @@ class SalaServiceImplTest {
 		
 		SalaDto sd1 = converter.toDto(s1);
 		SalaDto sd2 = converter.toDto(s2);
+		
+		Mockito.doNothing().when(salaSave).saveSaleToFile(List.of(sd1,sd2));
 		
 		assertEquals(salaService.getAllSalas(), List.of(sd1,sd2));
 		assertDoesNotThrow(()->salaService.getAllSalas());

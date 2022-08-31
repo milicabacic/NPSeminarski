@@ -34,9 +34,8 @@ public class RasporedIspitaConverter implements Converter<RasporedIspitaDto, Ras
 
 	
 	/**
-	 * Konstruktor koji inicijalizuje instancu klase RasporedIspitaConverter sa parametrima.
+	 * Konstruktor koji inicijalizuje instancu klase RasporedIspitaConverter.
 	 * 
-	 * @param rezervacijaRepository Repozitorijum koji poziva converter.
 	 */
 	@Autowired
 	public RasporedIspitaConverter() {

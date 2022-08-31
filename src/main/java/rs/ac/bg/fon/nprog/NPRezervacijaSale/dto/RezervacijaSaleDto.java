@@ -137,7 +137,7 @@ public class RezervacijaSaleDto {
 	/**
 	 * Postavlja datum i vreme do kada vazi rezervacija sale na zadatu vrednost.
 	 * 
-	 * @param datumVremeOd Datum i vreme do kada vazi rezervacija sale
+	 * @param datumVremeDo Datum i vreme do kada vazi rezervacija sale
 	 */
 	public void setDatumVremeDo(Date datumVremeDo) {
 		this.datumVremeDo = datumVremeDo;
